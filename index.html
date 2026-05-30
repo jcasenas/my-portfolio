@@ -117,11 +117,6 @@
       .poster-grid { grid-template-columns: 1fr 1fr; }
       .social-grid  { grid-template-columns: 1fr; }
     }
-     @media (max-width: 600px) {
-      #contact .reveal-left > div[style] {
-        grid-template-columns: 1fr;
-      }
-    }
   </style>
 </head>
 <body>
@@ -397,34 +392,47 @@
 
           <div class="slide">
             <div class="slide-bg slide-color-6"></div>
-              <div class="slide-bg" style="background-image:url('assets/img/uiux-1.png');background-size:cover;background-position:center top;"></div>
+            <div class="slide-placeholder">
+              <div class="slide-placeholder-icon"><i class="ph ph-figma-logo"></i></div>
+              <div class="slide-placeholder-label">uiux-1.jpg</div>
+            </div>
+            <!--
+              Replace with:
+              <div class="slide-bg" style="background-image:url('assets/img/uiux-1.jpg');background-size:cover;background-position:center top;"></div>
+            -->
             <div class="slide-overlay"></div>
             <div class="slide-info">
-              <span class="slide-tag">FIGMA PROTOTYPE</span>
-              <div class="slide-title">AXIOM</div>
-              <div class="slide-desc">A high fidelity prototype featuring the dashboard.</div>
+              <span class="slide-tag">UI / UX</span>
+              <div class="slide-title">Figma Design One</div>
+              <div class="slide-desc">Brief description — app, dashboard, prototype, or wireframe.</div>
             </div>
           </div>
 
           <div class="slide">
             <div class="slide-bg slide-color-2"></div>
-            <div class="slide-bg" style="background-image:url('assets/img/uiux-2.png');background-size:cover;background-position:center top;"></div>
+            <div class="slide-placeholder">
+              <div class="slide-placeholder-icon"><i class="ph ph-figma-logo"></i></div>
+              <div class="slide-placeholder-label">uiux-2.jpg</div>
+            </div>
             <div class="slide-overlay"></div>
             <div class="slide-info">
-              <span class="slide-tag">FIGMA PROTOTYPE</span>
-              <div class="slide-title">SKINETIQUE</div>
-              <div class="slide-desc">A high fidelity prototype featuring the Order Form modal.</div>
+              <span class="slide-tag">UI / UX</span>
+              <div class="slide-title">Figma Design Two</div>
+              <div class="slide-desc">Brief description — app, dashboard, prototype, or wireframe.</div>
             </div>
           </div>
 
           <div class="slide">
-            <div class="slide-bg slide-color-2"></div>
-            <div class="slide-bg" style="background-image:url('assets/img/uiux-3.png');background-size:cover;background-position:center top;"></div>
+            <div class="slide-bg slide-color-4"></div>
+            <div class="slide-placeholder">
+              <div class="slide-placeholder-icon"><i class="ph ph-figma-logo"></i></div>
+              <div class="slide-placeholder-label">uiux-3.jpg</div>
+            </div>
             <div class="slide-overlay"></div>
             <div class="slide-info">
-              <span class="slide-tag">CANVA WIREFRAME</span>
-              <div class="slide-title">MOBILE E-WALLET APP</div>
-              <div class="slide-desc">A low-fidelity wireframe designed via Canva.</div>
+              <span class="slide-tag">UI / UX</span>
+              <div class="slide-title">Figma Design Three</div>
+              <div class="slide-desc">Brief description — app, dashboard, prototype, or wireframe.</div>
             </div>
           </div>
 
@@ -490,145 +498,97 @@
   </section>
 
   <!-- ======================== MOTION & 3D ======================== -->
-<section id="motion">
-  <div class="section-header reveal">
-    <div>
-      <div class="section-label">03 — Motion &amp; 3D</div>
-      <h2 class="section-title">Animation &amp;<br/>3D Work</h2>
-    </div>
-  </div>
-  <div class="section-divider"></div>
-
-  <div style="display: flex; flex-direction: column; gap: 2.5rem;">
-
-    <!-- Animation 1 -->
-    <div class="reveal" style="
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 2rem;
-      align-items: start;
-    ">
-      <div style="
-        position: relative;
-        width: 100%;
-        aspect-ratio: 16/9;
-        border-radius: 8px;
-        overflow: hidden;
-        border: 1px solid var(--border);
-        background: #000;
-      ">
-        <iframe
-          src="https://www.youtube.com/embed/AMrLfUhVPaA"
-          title="Animation 1"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-          allowfullscreen
-          style="position: absolute; inset: 0; width: 100%; height: 100%; border: none;"
-        ></iframe>
+  <section id="motion">
+    <div class="section-header reveal">
+      <div>
+        <div class="section-label">03 — Motion &amp; 3D</div>
+        <h2 class="section-title">Animation &amp;<br/>3D Work</h2>
       </div>
-      <div style="display: flex; flex-direction: column; gap: 0.75rem;">
-        <div class="section-label" style="margin: 0;">Eternal Midnight</div>
-        <p style="
-          font-size: 0.95rem;
-          line-height: 1.85;
-          color: var(--text-muted);
-          text-align: justify;
-          margin: 0;
-        ">
-          This 17-minute film is a psychological-horror drama that utilizes Mine-imator, a 3D animation software inspired by the voxel-style visuals of Minecraft. 
-        </p>
+      <div class="tabs" data-target="motion-slides">
+        <button class="tab-btn active" data-filter="all">All</button>
+        <button class="tab-btn" data-filter="motion">Motion</button>
+        <button class="tab-btn" data-filter="3d">3D</button>
+        <button class="tab-btn" data-filter="vfx">VFX</button>
       </div>
     </div>
+    <div class="section-divider"></div>
 
-    <div style="width: 100%; height: 1px; background: var(--border);"></div>
-
-    <!-- Animation 2 -->
-    <div class="reveal" style="
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 2rem;
-      align-items: start;
-    ">
-      <div style="
-        position: relative;
-        width: 100%;
-        aspect-ratio: 16/9;
-        border-radius: 8px;
-        overflow: hidden;
-        border: 1px solid var(--border);
-        background: #000;
-      ">
-        <iframe
-          src="https://www.youtube.com/embed/eWMvzdC4IVk"
-          title="Animation 2"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-          allowfullscreen
-          style="position: absolute; inset: 0; width: 100%; height: 100%; border: none;"
-        ></iframe>
-      </div>
-      <div style="display: flex; flex-direction: column; gap: 0.75rem;">
-        <div class="section-label" style="margin: 0;">Milk</div>
-        <p style="
-          font-size: 0.95rem;
-          line-height: 1.85;
-          color: var(--text-muted);
-          text-align: justify;
-          margin: 0;
-        ">
-          Nominated for Best Animation and Best Original Concept by the Minecraft Machinima Awards 2025 and an Honorable Mention from Films That Move 2025, MILK was produced with Mine-imator and CapCut.
-        </p>
+    <div class="reveal">
+      <div class="slideshow-wrap" id="motionSlideshow">
+        <div class="slides" id="motion-slides">
+          <div class="slide" data-category="motion">
+            <div class="slide-bg" style="background: linear-gradient(135deg,#0D0D0D 0%,#1a0a2e 50%,#0f0f23 100%);"></div>
+            <div class="slide-placeholder">
+              <div class="slide-placeholder-icon"><i class="ph ph-film-strip"></i></div>
+              <div class="slide-placeholder-label">Add Video / Preview</div>
+            </div>
+            <div class="slide-overlay"></div>
+            <div class="slide-info">
+              <span class="slide-tag">Motion Graphics</span>
+              <div class="slide-title">Title Animation — Project X</div>
+              <div class="slide-desc">Animated title sequence designed for a short film / brand intro.</div>
+            </div>
+          </div>
+          <div class="slide" data-category="3d">
+            <div class="slide-bg" style="background: linear-gradient(135deg,#0a1628 0%,#1b2f4e 50%,#0d1f3c 100%);"></div>
+            <div class="slide-placeholder">
+              <div class="slide-placeholder-icon"><i class="ph ph-cube"></i></div>
+              <div class="slide-placeholder-label">Add 3D Render</div>
+            </div>
+            <div class="slide-overlay"></div>
+            <div class="slide-info">
+              <span class="slide-tag">3D</span>
+              <div class="slide-title">3D Product Visualization</div>
+              <div class="slide-desc">Photorealistic product render created in Blender for a client presentation.</div>
+            </div>
+          </div>
+          <div class="slide" data-category="vfx">
+            <div class="slide-bg" style="background: linear-gradient(135deg,#1a0505 0%,#2d0a0a 50%,#1f0808 100%);"></div>
+            <div class="slide-placeholder">
+              <div class="slide-placeholder-icon"><i class="ph ph-magic-wand"></i></div>
+              <div class="slide-placeholder-label">Add VFX Preview</div>
+            </div>
+            <div class="slide-overlay"></div>
+            <div class="slide-info">
+              <span class="slide-tag">VFX</span>
+              <div class="slide-title">Visual Effects Composition</div>
+              <div class="slide-desc">Composited VFX shot combining live footage with particle simulations.</div>
+            </div>
+          </div>
+          <div class="slide" data-category="3d">
+            <div class="slide-bg" style="background: linear-gradient(135deg,#0a1a0a 0%,#0f2f1a 50%,#081a10 100%);"></div>
+            <div class="slide-placeholder">
+              <div class="slide-placeholder-icon"><i class="ph ph-tree"></i></div>
+              <div class="slide-placeholder-label">Add 3D Scene</div>
+            </div>
+            <div class="slide-overlay"></div>
+            <div class="slide-info">
+              <span class="slide-tag">3D Scene</span>
+              <div class="slide-title">Environment Scene Study</div>
+              <div class="slide-desc">3D environment study focused on atmospheric lighting and materials.</div>
+            </div>
+          </div>
+        </div>
+        <div class="slide-arrows">
+          <button class="slide-arr slide-arr-prev" aria-label="Previous"><i class="ph ph-arrow-up"></i></button>
+          <button class="slide-arr slide-arr-next" aria-label="Next"><i class="ph ph-arrow-down"></i></button>
+        </div>
+        <div class="slide-dots">
+          <button class="slide-dot active" aria-label="Slide 1"></button>
+          <button class="slide-dot" aria-label="Slide 2"></button>
+          <button class="slide-dot" aria-label="Slide 3"></button>
+          <button class="slide-dot" aria-label="Slide 4"></button>
+        </div>
       </div>
     </div>
 
-    <div style="width: 100%; height: 1px; background: var(--border);"></div>
-
-    <!-- Animation 3 -->
-    <div class="reveal" style="
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 2rem;
-      align-items: start;
-    ">
-      <div style="
-        position: relative;
-        width: 100%;
-        aspect-ratio: 16/9;
-        border-radius: 8px;
-        overflow: hidden;
-        border: 1px solid var(--border);
-        background: #000;
-      ">
-        <iframe
-          src="https://www.youtube.com/embed/X11AmZap5ec"
-          title="Animation 3"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-          allowfullscreen
-          style="position: absolute; inset: 0; width: 100%; height: 100%; border: none;"
-        ></iframe>
-      </div>
-      <div style="display: flex; flex-direction: column; gap: 0.75rem;">
-        <div class="section-label" style="margin: 0;">Yoshanai</div>
-        <p style="
-          font-size: 0.95rem;
-          line-height: 1.85;
-          color: var(--text-muted);
-          text-align: justify;
-          margin: 0;
-        ">
-          Like the preceding features, Yoshanai was produced with Mine-imator and CapCut.
-        </p>
+    <div class="reveal" style="margin-top: 2.5rem;">
+      <p style="font-size:0.8rem;color:var(--text-muted);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:1rem;">Tools &amp; Software</p>
+      <div style="display:flex;flex-wrap:wrap;gap:0.75rem;">
+        <span class="sys-tag">Mine-imator</span>
       </div>
     </div>
-
-  </div>
-
-  <div class="reveal" style="margin-top: 2.5rem;">
-    <p style="font-size:0.8rem;color:var(--text-muted);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:1rem;">Tools &amp; Software</p>
-    <div style="display:flex;flex-wrap:wrap;gap:0.75rem;">
-      <span class="sys-tag">CapCut</span>
-      <span class="sys-tag">Mine-imator</span>
-    </div>
-  </div>
-</section>
+  </section>
 
   <!-- ======================== ABOUT ======================== -->
   <section id="about">
@@ -665,8 +625,9 @@
           <div class="skill-item">Systems Development</div>
           <div class="skill-item">UI / UX Design</div>
           <div class="skill-item">Graphic Design</div>
-          <div class="skill-item">Digital Marketing</div>
-          <div class="skill-item">Creative Writing</div>
+          <div class="skill-item">Motion Graphics</div>
+          <div class="skill-item">3D Modeling &amp; Rendering</div>
+          <div class="skill-item">Brand Identity</div>
           <div class="skill-item">Video Editing</div>
           <div class="skill-item">Front-End Development</div>
         </div>
@@ -681,58 +642,76 @@
   </section>
 
   <!-- ======================== CONTACT ======================== -->
-<section id="contact">
-  <div class="section-header reveal">
-    <div>
-      <div class="section-label">05 — Contact</div>
-      <h2 class="section-title">Let's Build<br/>Something Together</h2>
+  <section id="contact">
+    <div class="section-header reveal">
+      <div>
+        <div class="section-label">05 — Contact</div>
+        <h2 class="section-title">Let's Build<br/>Something Together</h2>
+      </div>
     </div>
-  </div>
-  <div class="section-divider"></div>
+    <div class="section-divider"></div>
 
-  <div class="reveal-left">
-    <div class="contact-info" style="margin-bottom: 2rem;">
-      <h3>Get In Touch</h3>
-      <p>Whether you have a project in mind, want to collaborate, or just want to say hello — my inbox is always open. I'll get back to you as soon as possible.</p>
+    <div class="contact-grid">
+      <div class="reveal-left">
+        <div class="contact-info">
+          <h3>Get In Touch</h3>
+          <p>Whether you have a project in mind, want to collaborate, or just want to say hello — my inbox is always open. I'll get back to you as soon as possible.</p>
+        </div>
+        <div class="contact-links">
+          <a href="mailto:julliannchannel2@gmail.com" class="contact-link">
+            <span class="contact-link-icon"><i class="ph ph-envelope"></i></span>
+            <div class="contact-link-text">
+              julliannchannel2@gmail.com
+              <span>Send me an email</span>
+            </div>
+          </a>
+          <a href="https://www.linkedin.com/in/julliann-miguelie-case%C3%B1as-328248307/" class="contact-link" target="_blank" rel="noopener">
+            <span class="contact-link-icon"><i class="ph ph-linkedin-logo"></i></span>
+            <div class="contact-link-text">
+              linkedin.com/in/julliann-miguelie-caseñas
+              <span>Connect on LinkedIn</span>
+            </div>
+          </a>
+          <a href="https://github.com/jcasenas" class="contact-link" target="_blank" rel="noopener">
+            <span class="contact-link-icon"><i class="ph ph-github-logo"></i></span>
+            <div class="contact-link-text">
+              github.com/jcasenas
+              <span>See my code</span>
+            </div>
+          </a>
+          <a href="https://www.instagram.com/jllnnah" class="contact-link" target="_blank" rel="noopener">
+            <span class="contact-link-icon"><i class="ph ph-instagram-logo"></i></span>
+            <div class="contact-link-text">
+              @jllnnah
+              <span>Follow on Instagram</span>
+            </div>
+          </a>
+        </div>
+      </div>
+
+      <div class="reveal-right">
+        <form class="contact-form" id="contactForm">
+          <div class="form-group">
+            <label for="name">Your Name</label>
+            <input type="text" id="name" name="name" placeholder="John Doe" required />
+          </div>
+          <div class="form-group">
+            <label for="email">Email Address</label>
+            <input type="email" id="email" name="email" placeholder="john@example.com" required />
+          </div>
+          <div class="form-group">
+            <label for="subject">Subject</label>
+            <input type="text" id="subject" name="subject" placeholder="Project Inquiry" />
+          </div>
+          <div class="form-group">
+            <label for="message">Message</label>
+            <textarea id="message" name="message" placeholder="Tell me about your project..." required></textarea>
+          </div>
+          <button type="submit" class="btn-submit">Send Message</button>
+        </form>
+      </div>
     </div>
-
-    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
-
-      <a href="mailto:julliannchannel2@gmail.com" class="contact-link">
-        <span class="contact-link-icon"><i class="ph ph-envelope"></i></span>
-        <div class="contact-link-text">
-          julliannchannel2@gmail.com
-          <span>Send me an email</span>
-        </div>
-      </a>
-
-      <a href="https://www.linkedin.com/in/julliann-miguelie-case%C3%B1as-328248307/" class="contact-link" target="_blank" rel="noopener">
-        <span class="contact-link-icon"><i class="ph ph-linkedin-logo"></i></span>
-        <div class="contact-link-text">
-          linkedin.com/in/julliann-miguelie-caseñas
-          <span>Connect on LinkedIn</span>
-        </div>
-      </a>
-
-      <a href="https://github.com/jcasenas" class="contact-link" target="_blank" rel="noopener">
-        <span class="contact-link-icon"><i class="ph ph-github-logo"></i></span>
-        <div class="contact-link-text">
-          github.com/jcasenas
-          <span>See my code</span>
-        </div>
-      </a>
-
-      <a href="https://www.instagram.com/jllnnah" class="contact-link" target="_blank" rel="noopener">
-        <span class="contact-link-icon"><i class="ph ph-instagram-logo"></i></span>
-        <div class="contact-link-text">
-          @jllnnah
-          <span>Follow on Instagram</span>
-        </div>
-      </a>
-
-    </div>
-  </div>
-</section>
+  </section>
 
   <!-- ======================== FOOTER ======================== -->
   <footer>
