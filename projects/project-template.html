@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Project Name — Julliann Dequina</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet" />
+  <script src="https://unpkg.com/@phosphor-icons/web"></script>
+  <link rel="stylesheet" href="../assets/css/style.css" />
+  <style>
+    /* ── PROJECT PAGE STYLES ── */
+
+    .proj-hero {
+      height: 70vh; min-height: 460px;
+      display: flex; align-items: flex-end;
+      position: relative; overflow: hidden;
+      margin-top: var(--nav-h);
+    }
+    .proj-hero-bg {
+      position: absolute; inset: 0;
+      background-size: cover; background-position: center top;
+    }
+    /* Dark gradient so text is always readable */
+    .proj-hero-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(
+        to top,
+        rgba(0,0,0,0.90) 0%,
+        rgba(0,0,0,0.55) 40%,
+        rgba(0,0,0,0.20) 100%
+      );
+    }
+    .proj-hero-content {
+      position: relative; z-index: 2;
+      width: 100%; padding: 3rem 5vw;
+      color: #fff;
+    }
+    .proj-back {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      font-size: 0.82rem; color: rgba(255,255,255,0.6);
+      margin-bottom: 1.25rem; transition: color 0.2s;
+    }
+    .proj-back:hover { color: #fff; }
+    .proj-meta { display: flex; gap: 0.5rem; margin-bottom: 0.75rem; flex-wrap: wrap; }
+    .proj-tag {
+      padding: 0.22rem 0.7rem;
+      background: var(--accent); color: #fff;
+      border-radius: 99px;
+      font-size: 0.7rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase;
+    }
+    .proj-tag-outline {
+      padding: 0.22rem 0.7rem;
+      border: 1px solid rgba(255,255,255,0.4); color: rgba(255,255,255,0.8);
+      border-radius: 99px;
+      font-size: 0.7rem; font-weight: 500; letter-spacing: 0.06em;
+    }
+    .proj-title {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(2rem, 5vw, 3.8rem);
+      font-weight: 800; letter-spacing: -0.03em; line-height: 1.05;
+      margin-bottom: 0.6rem;
+    }
+    .proj-subtitle {
+      font-size: 1rem; color: rgba(255,255,255,0.65); max-width: 55ch;
+    }
+
+    /* ── BODY ── */
+    .proj-body {
+      max-width: 1000px; margin: 0 auto; padding: 0 5vw 6rem;
+    }
+
+    /* ── OVERVIEW STATS BAR ── */
+    .proj-stats-bar {
+      display: flex; flex-wrap: wrap; gap: 0;
+      border: 1px solid var(--border);
+      border-radius: 8px; overflow: hidden;
+      margin: 3rem 0;
+    }
+    .proj-stat {
+      flex: 1; min-width: 120px;
+      padding: 1.25rem 1.5rem;
+      border-right: 1px solid var(--border);
+      background: var(--bg-card);
+    }
+    .proj-stat:last-child { border-right: none; }
+    .proj-stat-label {
+      font-size: 0.7rem; font-weight: 500; letter-spacing: 0.12em;
+      text-transform: uppercase; color: var(--text-muted);
+      margin-bottom: 0.3rem;
+    }
+    .proj-stat-value {
+      font-family: 'Syne', sans-serif; font-size: 0.95rem; font-weight: 700;
+    }
+
+    /* ── SECTION LABEL ── */
+    .proj-label {
+      font-size: 0.7rem; font-weight: 600; letter-spacing: 0.14em;
+      text-transform: uppercase; color: var(--accent);
+      margin-bottom: 0.4rem;
+    }
+    .proj-heading {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(1.3rem, 2.5vw, 1.9rem);
+      font-weight: 800; letter-spacing: -0.02em;
+      margin-bottom: 1rem;
+    }
+
+    /* ── OVERVIEW TEXT ── */
+    .proj-overview-text { padding: 3rem 0; border-bottom: 1px solid var(--border); }
+    .proj-overview-text p {
+      color: var(--text-muted); font-size: 1rem; line-height: 1.85;
+      margin-bottom: 1rem; max-width: 72ch;
+    }
+
+    /* ── SCREENSHOTS — vertical stack ── */
+    .proj-screenshots { padding: 3rem 0; border-bottom: 1px solid var(--border); }
+
+    /* Featured: full width, natural height */
+    .proj-shot-featured {
+      width: 100%; border-radius: 8px; overflow: hidden;
+      border: 1px solid var(--border);
+      margin-bottom: 1rem;
+      background: var(--bg-card);
+      cursor: zoom-in;
+    }
+    .proj-shot-featured img {
+      width: 100%; height: auto; display: block;
+      transition: transform 0.4s;
+    }
+    .proj-shot-featured:hover img { transform: scale(1.015); }
+
+    /* Placeholder — fixed height only for placeholders, not real images */
+    .proj-shot-placeholder {
+      width: 100%; aspect-ratio: 16/9;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      gap: 0.75rem;
+      color: rgba(255,255,255,0.18);
+      font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase;
+    }
+
+    /* Grid of secondary shots */
+    .proj-shot-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+    .proj-shot-item {
+      display: flex; flex-direction: column; gap: 0.45rem;
+      cursor: zoom-in;
+    }
+    .proj-shot-item-img {
+      width: 100%; border-radius: 6px; overflow: hidden;
+      border: 1px solid var(--border);
+      background: var(--bg-card);
+      transition: border-color 0.2s;
+    }
+    .proj-shot-item:hover .proj-shot-item-img { border-color: var(--accent); }
+    .proj-shot-item-img img {
+      width: 100%; height: auto; display: block;
+      transition: transform 0.3s;
+    }
+    .proj-shot-item:hover img { transform: scale(1.02); }
+    .proj-shot-caption {
+      font-size: 0.78rem; color: var(--text-muted); padding-left: 2px;
+    }
+
+    /* ── LIGHTBOX ── */
+    .lightbox {
+      position: fixed; inset: 0;
+      background: rgba(0,0,0,0.93);
+      z-index: 500; display: none;
+      align-items: center; justify-content: center;
+      padding: 2rem;
+    }
+    .lightbox.open { display: flex; flex-direction: column; gap: 0.75rem; }
+    .lightbox-img-wrap { max-width: 1100px; width: 100%; text-align: center; }
+    .lightbox-img-wrap img {
+      max-width: 100%; max-height: 82vh;
+      border-radius: 6px; object-fit: contain;
+    }
+    .lightbox-caption { color: rgba(255,255,255,0.45); font-size: 0.82rem; }
+    .lightbox-close {
+      position: absolute; top: 1.25rem; right: 1.25rem;
+      width: 38px; height: 38px; border-radius: 50%;
+      background: rgba(255,255,255,0.12); color: #fff; font-size: 1.1rem;
+      display: flex; align-items: center; justify-content: center;
+      transition: background 0.2s;
+    }
+    .lightbox-close:hover { background: rgba(255,255,255,0.22); }
+    .lightbox-arr {
+      position: absolute; top: 50%; transform: translateY(-50%);
+      width: 42px; height: 42px; border-radius: 50%;
+      background: rgba(255,255,255,0.10); color: #fff; font-size: 1rem;
+      display: flex; align-items: center; justify-content: center;
+      transition: background 0.2s;
+    }
+    .lightbox-arr:hover { background: rgba(255,255,255,0.22); }
+    .lightbox-prev { left: 1.25rem; }
+    .lightbox-next { right: 1.25rem; }
+
+    /* ── DESCRIPTION ── */
+    .proj-description {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 3.5rem; padding: 3rem 0; border-bottom: 1px solid var(--border);
+    }
+    .proj-desc-col p {
+      color: var(--text-muted); font-size: 0.97rem; line-height: 1.85; margin-bottom: 1rem;
+    }
+
+    /* ── TECH STACK ── */
+    .proj-stack { padding: 3rem 0; border-bottom: 1px solid var(--border); }
+    .proj-stack-row { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 1.25rem; }
+    .proj-stack-chip {
+      display: flex; align-items: center; gap: 0.5rem;
+      padding: 0.6rem 1.1rem;
+      background: var(--bg-card); border: 1px solid var(--border);
+      border-radius: 6px; font-size: 0.85rem; font-weight: 500;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+    .proj-stack-chip:hover { border-color: var(--accent); transform: translateY(-2px); }
+    .proj-stack-chip i { color: var(--accent); font-size: 1rem; }
+
+    /* ── RESULTS ── */
+    .proj-results { padding: 3rem 0; border-bottom: 1px solid var(--border); }
+    .proj-results p { color: var(--text-muted); font-size: 0.97rem; line-height: 1.8; margin-bottom: 1.75rem; }
+    .proj-results-row { display: grid; grid-template-columns: repeat(3,1fr); gap: 1rem; }
+    .proj-result-card {
+      padding: 1.5rem; background: var(--bg-card);
+      border: 1px solid var(--border); border-radius: 8px;
+    }
+    .proj-result-num {
+      font-family: 'Syne', sans-serif;
+      font-size: 2.2rem; font-weight: 800; color: var(--accent); line-height: 1;
+      margin-bottom: 0.35rem;
+    }
+    .proj-result-label { font-size: 0.82rem; color: var(--text-muted); }
+
+    /* ── CTA ── */
+    .proj-cta { padding: 4rem 0 0; }
+    .proj-cta-box {
+      background: var(--bg-card); border: 1px solid var(--border);
+      border-radius: 10px; padding: 3rem; text-align: center;
+    }
+    .proj-cta-box h2 {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(1.4rem,3vw,2rem); font-weight: 800; margin-bottom: 0.6rem;
+    }
+    .proj-cta-box p { color: var(--text-muted); margin-bottom: 2rem; }
+    .proj-cta-actions { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 680px) {
+      .proj-stats-bar { flex-direction: column; }
+      .proj-stat { border-right: none; border-bottom: 1px solid var(--border); }
+      .proj-stat:last-child { border-bottom: none; }
+      .proj-description { grid-template-columns: 1fr; gap: 2rem; }
+      .proj-shot-grid { grid-template-columns: 1fr; }
+      .proj-results-row { grid-template-columns: 1fr; }
+      .lightbox-prev { left: 0.5rem; }
+      .lightbox-next { right: 0.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <div id="cursor"></div>
+  <div id="cursor-ring"></div>
+
+  <nav>
+    <a href="../index.html" class="nav-logo">
+      <div class="nav-logo-icon">J</div>
+      <span>Julliann Dequina.</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="../index.html#systems">Systems</a></li>
+      <li><a href="../index.html#graphics">Design</a></li>
+      <li><a href="../index.html#motion">Motion &amp; 3D</a></li>
+      <li><a href="../index.html#about">About</a></li>
+    </ul>
+    <div class="nav-right">
+      <a href="../index.html#contact" class="nav-contact">Contact Me</a>
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme"></button>
+      <button class="nav-hamburger" id="navHamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="../index.html">Home</a>
+    <a href="../index.html#systems">Systems</a>
+    <a href="../index.html#graphics">Design</a>
+    <a href="../index.html#motion">Motion &amp; 3D</a>
+    <a href="../index.html#contact">Contact</a>
+  </div>
+
+  <!-- ── HERO ── -->
+  <div class="proj-hero">
+    <div class="proj-hero-bg slide-color-1">
+      <!-- Replace with: style="background-image: url('../assets/img/your-hero.png');" -->
+    </div>
+    <div class="proj-hero-overlay"></div>
+    <div class="proj-hero-content">
+      <a href="../index.html#systems" class="proj-back">
+        <i class="ph ph-arrow-left"></i> Back to Portfolio
+      </a>
+      <div class="proj-meta">
+        <span class="proj-tag">Web App</span>
+        <span class="proj-tag-outline">2024</span>
+      </div>
+      <h1 class="proj-title">Project Name</h1>
+      <p class="proj-subtitle">One-line description of what this project does.</p>
+    </div>
+  </div>
+
+  <!-- ── BODY ── -->
+  <div class="proj-body">
+
+    <!-- Stats bar -->
+    <div class="proj-stats-bar reveal">
+      <div class="proj-stat">
+        <div class="proj-stat-label">Role</div>
+        <div class="proj-stat-value">Full Stack Developer</div>
+      </div>
+      <div class="proj-stat">
+        <div class="proj-stat-label">Stack</div>
+        <div class="proj-stat-value">Laravel · MySQL</div>
+      </div>
+      <div class="proj-stat">
+        <div class="proj-stat-label">Type</div>
+        <div class="proj-stat-value">Web Application</div>
+      </div>
+      <div class="proj-stat">
+        <div class="proj-stat-label">Status</div>
+        <div class="proj-stat-value">Completed</div>
+      </div>
+    </div>
+
+    <!-- Overview -->
+    <div class="proj-overview-text reveal">
+      <div class="proj-label">Overview</div>
+      <p>
+        Write your first overview paragraph here. What is this project, who is it for, and what does it do?
+      </p>
+      <p>
+        Write a second paragraph with more context — background, scope, your role, or anything else that helps visitors understand the project.
+      </p>
+    </div>
+
+    <!-- Screenshots -->
+    <div class="proj-screenshots reveal">
+      <div class="proj-label">Screenshots</div>
+      <h2 class="proj-heading">A Look Inside</h2>
+
+      <!-- Featured / main screenshot — replace placeholder div with <img> when ready -->
+      <div class="proj-shot-featured">
+        <!-- OPTION A — placeholder (remove when you have the image): -->
+        <div class="proj-shot-placeholder slide-color-1">
+          <i class="ph ph-monitor" style="font-size:3rem;"></i>
+          <span>Main Screenshot — replace this div with an &lt;img&gt;</span>
+        </div>
+        <!-- OPTION B — real image (uncomment and fill in): -->
+        <!-- <img src="../assets/img/project-1.png" alt="Dashboard view" /> -->
+      </div>
+
+      <!-- Secondary screenshots grid -->
+      <div class="proj-shot-grid">
+
+        <div class="proj-shot-item">
+          <div class="proj-shot-item-img">
+            <div class="proj-shot-placeholder slide-color-2" style="aspect-ratio:16/10;">
+              <i class="ph ph-image" style="font-size:1.8rem;"></i>
+              <span>Screenshot 2</span>
+            </div>
+            <!-- <img src="../assets/img/project-2.png" alt="Description" /> -->
+          </div>
+          <div class="proj-shot-caption">Screen / feature name</div>
+        </div>
+
+        <div class="proj-shot-item">
+          <div class="proj-shot-item-img">
+            <div class="proj-shot-placeholder slide-color-4" style="aspect-ratio:16/10;">
+              <i class="ph ph-image" style="font-size:1.8rem;"></i>
+              <span>Screenshot 3</span>
+            </div>
+            <!-- <img src="../assets/img/project-3.png" alt="Description" /> -->
+          </div>
+          <div class="proj-shot-caption">Screen / feature name</div>
+        </div>
+
+        <div class="proj-shot-item">
+          <div class="proj-shot-item-img">
+            <div class="proj-shot-placeholder slide-color-5" style="aspect-ratio:16/10;">
+              <i class="ph ph-image" style="font-size:1.8rem;"></i>
+              <span>Screenshot 4</span>
+            </div>
+            <!-- <img src="../assets/img/project-4.png" alt="Description" /> -->
+          </div>
+          <div class="proj-shot-caption">Screen / feature name</div>
+        </div>
+
+        <div class="proj-shot-item">
+          <div class="proj-shot-item-img">
+            <div class="proj-shot-placeholder slide-color-6" style="aspect-ratio:16/10;">
+              <i class="ph ph-image" style="font-size:1.8rem;"></i>
+              <span>Screenshot 5</span>
+            </div>
+            <!-- <img src="../assets/img/project-5.png" alt="Description" /> -->
+          </div>
+          <div class="proj-shot-caption">Screen / feature name</div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Lightbox -->
+    <div class="lightbox" id="lightbox">
+      <button class="lightbox-close" id="lightboxClose"><i class="ph ph-x"></i></button>
+      <button class="lightbox-arr lightbox-prev" id="lightboxPrev"><i class="ph ph-arrow-left"></i></button>
+      <button class="lightbox-arr lightbox-next" id="lightboxNext"><i class="ph ph-arrow-right"></i></button>
+      <div class="lightbox-img-wrap"><img id="lightboxImg" src="" alt="" /></div>
+      <div class="lightbox-caption" id="lightboxCaption"></div>
+    </div>
+
+    <!-- Problem / Solution -->
+    <div class="proj-description reveal">
+      <div class="proj-desc-col">
+        <div class="proj-label">The Problem</div>
+        <h2 class="proj-heading">What Needed Solving</h2>
+        <p>[Describe the core problem this project was built to solve.]</p>
+        <p>[Add more context — who was affected, what the workflow looked like before.]</p>
+      </div>
+      <div class="proj-desc-col">
+        <div class="proj-label">The Solution</div>
+        <h2 class="proj-heading">How It Was Built</h2>
+        <p>[Walk through your approach — architecture, key decisions, why you chose this stack.]</p>
+        <p>[Mention interesting technical challenges and how you solved them.]</p>
+      </div>
+    </div>
+
+    <!-- Tech Stack -->
+    <div class="proj-stack reveal">
+      <div class="proj-label">Tech Stack</div>
+      <div class="proj-stack-row">
+        <div class="proj-stack-chip"><i class="ph ph-code"></i> PHP</div>
+        <div class="proj-stack-chip"><i class="ph ph-layout"></i> Laravel</div>
+        <div class="proj-stack-chip"><i class="ph ph-database"></i> MySQL</div>
+        <div class="proj-stack-chip"><i class="ph ph-paint-brush"></i> Blade</div>
+        <div class="proj-stack-chip"><i class="ph ph-browsers"></i> Tailwind CSS</div>
+      </div>
+    </div>
+
+    <!-- Results -->
+    <div class="proj-results reveal">
+      <div class="proj-label">Outcome</div>
+      <h2 class="proj-heading">Results &amp; Impact</h2>
+      <p>[Describe the outcome — is it live? How many users or records? What improved?]</p>
+      <div class="proj-results-row">
+        <div class="proj-result-card">
+          <div class="proj-result-num">—</div>
+          <div class="proj-result-label">Add a key metric</div>
+        </div>
+        <div class="proj-result-card">
+          <div class="proj-result-num">—</div>
+          <div class="proj-result-label">Another outcome</div>
+        </div>
+        <div class="proj-result-card">
+          <div class="proj-result-num">—</div>
+          <div class="proj-result-label">Third result</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CTA -->
+    <div class="proj-cta reveal">
+      <div class="proj-cta-box">
+        <h2>Interested in working together?</h2>
+        <p>I'm always open to new projects and collaborations.</p>
+        <div class="proj-cta-actions">
+          <a href="../index.html#contact" class="btn-primary">Get In Touch <i class="ph ph-arrow-right"></i></a>
+          <a href="../index.html#systems" class="btn-primary" style="background:transparent;color:var(--text);border:1.5px solid var(--border);">
+            <i class="ph ph-arrow-left"></i> More Projects
+          </a>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /proj-body -->
+
+  <footer>
+    <div class="footer-copy">&copy; <span id="year"></span> Julliann Dequina.</div>
+    <div class="footer-socials">
+      <a href="https://www.instagram.com/jllnnah" class="footer-social"><i class="ph ph-instagram-logo"></i></a>
+      <a href="https://www.linkedin.com/in/julliann-miguelie-case%C3%B1as-328248307/" class="footer-social"><i class="ph ph-linkedin-logo"></i></a>
+      <a href="https://github.com/jcasenas" class="footer-social"><i class="ph ph-github-logo"></i></a>
+    </div>
+  </footer>
+
+  <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+  <script src="../assets/js/main.js"></script>
+  <script>
+    // Lightbox — only wires up real <img> tags, ignores placeholders
+    document.addEventListener('DOMContentLoaded', () => {
+      const imgs = [...document.querySelectorAll(
+        '.proj-shot-featured img, .proj-shot-item-img img'
+      )];
+      const lb        = document.getElementById('lightbox');
+      const lbImg     = document.getElementById('lightboxImg');
+      const lbCap     = document.getElementById('lightboxCaption');
+      const lbClose   = document.getElementById('lightboxClose');
+      const lbPrev    = document.getElementById('lightboxPrev');
+      const lbNext    = document.getElementById('lightboxNext');
+      let cur = 0;
+
+      if (!imgs.length) {
+        lbPrev && (lbPrev.style.display = 'none');
+        lbNext && (lbNext.style.display = 'none');
+      }
+
+      function open(i) {
+        cur = (i + imgs.length) % imgs.length;
+        lbImg.src = imgs[cur].src;
+        lbImg.alt = imgs[cur].alt;
+        lbCap.textContent = imgs[cur].closest('.proj-shot-item')
+          ?.querySelector('.proj-shot-caption')?.textContent || '';
+        lb.classList.add('open');
+        document.body.style.overflow = 'hidden';
+      }
+      function close() { lb.classList.remove('open'); document.body.style.overflow = ''; }
+
+      imgs.forEach((img, i) => {
+        img.closest('.proj-shot-featured, .proj-shot-item')
+           ?.addEventListener('click', () => open(i));
+      });
+
+      lbClose?.addEventListener('click', close);
+      lbPrev?.addEventListener('click', () => open(cur - 1));
+      lbNext?.addEventListener('click', () => open(cur + 1));
+      lb?.addEventListener('click', e => { if (e.target === lb) close(); });
+      document.addEventListener('keydown', e => {
+        if (!lb.classList.contains('open')) return;
+        if (e.key === 'Escape') close();
+        if (e.key === 'ArrowLeft') open(cur - 1);
+        if (e.key === 'ArrowRight') open(cur + 1);
+      });
+    });
+  </script>
+</body>
+</html>

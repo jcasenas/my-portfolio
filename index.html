@@ -1,0 +1,750 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Portfolio — Systems · Design · Motion</title>
+  <meta name="description" content="Portfolio showcasing systems development, graphic design, and 3D/animation work." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet" />
+  <script src="https://unpkg.com/@phosphor-icons/web"></script>
+  <link rel="stylesheet" href="assets/css/style.css" />
+
+  <style>
+    /* ── GRAPHIC DESIGN SUBSECTIONS ── */
+
+    .design-subsection { margin-bottom: 3.5rem; }
+    .design-subsection:last-child { margin-bottom: 0; }
+
+    .design-sub-label {
+      display: flex; align-items: center; gap: 0.75rem;
+      margin-bottom: 1.5rem;
+    }
+    .design-sub-label-text {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.05rem; font-weight: 700;
+      letter-spacing: -0.01em;
+      white-space: nowrap;
+    }
+    .design-sub-label-line {
+      flex: 1; height: 1px; background: var(--border);
+    }
+    .design-sub-count {
+      font-size: 0.72rem; font-weight: 500; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--text-muted);
+    }
+
+    /* ── POSTER GRID ── */
+    .poster-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.25rem;
+    }
+    .poster-item {
+      display: flex; flex-direction: column; gap: 0.5rem;
+      cursor: pointer;
+    }
+    .poster-frame {
+      aspect-ratio: 2/3;
+      border-radius: 6px; overflow: hidden;
+      border: 1px solid var(--border);
+      background: var(--bg-card);
+      transition: border-color 0.2s, transform 0.25s, box-shadow 0.25s;
+      position: relative;
+    }
+    .poster-frame img {
+      width: 100%; height: 100%; object-fit: cover;
+      display: block; transition: transform 0.4s;
+    }
+    .poster-item:hover .poster-frame {
+      border-color: var(--accent);
+      transform: translateY(-4px);
+      box-shadow: 0 12px 32px rgba(0,0,0,0.12);
+    }
+    .poster-item:hover .poster-frame img { transform: scale(1.04); }
+
+    .poster-placeholder {
+      width: 100%; height: 100%;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      gap: 0.6rem;
+      color: rgba(255,255,255,0.18);
+      font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase;
+    }
+    .poster-caption {
+      font-size: 0.8rem; color: var(--text-muted);
+      font-weight: 500; padding-left: 2px;
+    }
+
+    /* ── SOCIAL MEDIA GRID ── */
+    .social-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+    }
+    .social-item {
+      display: flex; flex-direction: column; gap: 0.45rem;
+      cursor: pointer;
+    }
+    .social-frame {
+      border-radius: 8px; overflow: hidden;
+      border: 1px solid var(--border);
+      background: var(--bg-card);
+      transition: border-color 0.2s, transform 0.2s;
+    }
+    .social-frame img {
+      width: 100%; height: auto; display: block;
+      transition: transform 0.3s;
+    }
+    .social-item:hover .social-frame { border-color: var(--accent); transform: translateY(-3px); }
+    .social-item:hover .social-frame img { transform: scale(1.03); }
+    .social-caption { font-size: 0.75rem; color: var(--text-muted); padding-left: 2px; }
+
+    /* ── DIVIDER ── */
+    .design-divider {
+      width: 100%; height: 1px;
+      background: var(--border);
+      margin: 3rem 0;
+    }
+
+    @media (max-width: 900px) {
+      .poster-grid { grid-template-columns: repeat(2, 1fr); }
+      .social-grid  { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 500px) {
+      .poster-grid { grid-template-columns: 1fr 1fr; }
+      .social-grid  { grid-template-columns: 1fr; }
+    }
+     @media (max-width: 600px) {
+      #contact .reveal-left > div[style] {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div id="cursor"></div>
+  <div id="cursor-ring"></div>
+
+  <!-- ======================== NAV ======================== -->
+  <nav>
+    <a href="#home" class="nav-logo">
+      <div class="nav-logo-icon">J</div>
+      <span>Julliann Dequina.</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#home" class="active">Home</a></li>
+      <li><a href="#systems">Systems</a></li>
+      <li><a href="#graphics">Design</a></li>
+      <li><a href="#motion">Motion &amp; 3D</a></li>
+      <li><a href="#about">About Me</a></li>
+    </ul>
+    <div class="nav-right">
+      <a href="#contact" class="nav-contact">Contact Me</a>
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme"></button>
+      <button class="nav-hamburger" id="navHamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#home">Home</a>
+    <a href="#systems">Systems</a>
+    <a href="#graphics">Design</a>
+    <a href="#motion">Motion &amp; 3D</a>
+    <a href="#about">About</a>
+    <a href="#contact">Contact</a>
+  </div>
+
+  <!-- ======================== HERO ======================== -->
+  <section id="home">
+    <div class="hero-bg-text" aria-hidden="true">PORTFOLIO</div>
+    <div class="hero-inner">
+      <div class="hero-text">
+        <div class="hero-label">Available for work</div>
+        <h1 class="hero-name">Julliann<br/>Dequina</h1>
+        <div class="hero-desc">
+          <span class="hero-desc-dash">—</span>
+          <p>
+            <strong><span id="heroRole">Systems Developer</span></strong>, crafting digital experiences across web systems, visual design, motion graphics, and 3D — turning ideas into quality work.
+          </p>
+        </div>
+        <div class="hero-actions">
+          <a href="#systems" class="btn-primary">View Work <i class="ph ph-arrow-right"></i></a>
+          <a href="#about" class="btn-scroll">
+            <span class="scroll-btn-icon"><i class="ph ph-arrow-down"></i></span>
+            Scroll Down
+          </a>
+        </div>
+      </div>
+
+      <div class="hero-image-wrap">
+        <div class="hero-img-frame">
+          <img src="assets/img/yanna.jpg" alt="Julliann">
+          <div class="hero-deco hero-deco-dot"></div>
+        </div>
+        <svg class="deco-arrow" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M10 10 Q 35 5, 50 30 Q 55 45, 40 52" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+          <path d="M35 48 L40 52 L44 44" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <svg class="deco-lines" viewBox="0 0 70 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <line x1="0" y1="8" x2="70" y2="0" stroke="currentColor" stroke-width="1.5"/>
+          <line x1="0" y1="18" x2="70" y2="10" stroke="currentColor" stroke-width="1.5"/>
+          <line x1="0" y1="28" x2="70" y2="20" stroke="currentColor" stroke-width="1.5"/>
+        </svg>
+        <div class="hero-socials">
+          <a href="https://www.instagram.com/jllnnah" class="hero-social-link" aria-label="Instagram"><i class="ph ph-instagram-logo"></i></a>
+          <a href="https://www.linkedin.com/in/julliann-miguelie-case%C3%B1as-328248307/" class="hero-social-link" aria-label="LinkedIn"><i class="ph ph-linkedin-logo"></i></a>
+          <a href="https://github.com/jcasenas" class="hero-social-link" aria-label="GitHub"><i class="ph ph-github-logo"></i></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================== SYSTEMS ======================== -->
+  <section id="systems">
+    <div class="section-header reveal">
+      <div>
+        <div class="section-label">01 — Systems</div>
+        <h2 class="section-title">Web Systems &amp;<br/>Applications</h2>
+      </div>
+      <div class="tabs" data-target="systems-grid">
+        <button class="tab-btn active" data-filter="all">All</button>
+      </div>
+    </div>
+    <div class="section-divider"></div>
+
+    <div class="reveal">
+      <div class="slideshow-wrap" id="systemsSlideshow">
+        <div class="slides">
+          <div class="slide" data-category="web">
+            <div class="slide-bg" style="background-image: url('assets/img/axiom-1.png'); background-size: cover; background-position: center;"></div>
+            <div class="slide-overlay"></div>
+            <div class="slide-info">
+              <span class="slide-tag">Web App</span>
+              <div class="slide-title">AXIOM Library System</div>
+              <div class="slide-desc">A library e-resource management system built with Laravel and MySQL.</div>
+            </div>
+          </div>
+          <div class="slide" data-category="web">
+            <div class="slide-bg" style="background-image: url('assets/img/skinetique-1.png'); background-size: cover; background-position: center;"></div>
+            <div class="slide-overlay"></div>
+            <div class="slide-info">
+              <span class="slide-tag">Web App</span>
+              <div class="slide-title">SKINETIQUE</div>
+              <div class="slide-desc">A records management system for a skincare business in Davao City built with Laravel and MySQL.</div>
+            </div>
+          </div>
+        </div>
+        <div class="slide-arrows">
+          <button class="slide-arr slide-arr-prev" aria-label="Previous"><i class="ph ph-arrow-up"></i></button>
+          <button class="slide-arr slide-arr-next" aria-label="Next"><i class="ph ph-arrow-down"></i></button>
+        </div>
+        <div class="slide-dots">
+          <button class="slide-dot active" aria-label="Slide 1"></button>
+          <button class="slide-dot" aria-label="Slide 2"></button>
+        </div>
+      </div>
+    </div>
+
+    <div class="systems-grid" id="systems-grid">
+      <a href="projects/axiom.html" class="sys-card reveal" data-category="web">
+        <div class="sys-card-num">01</div>
+        <div class="sys-card-title">AXIOM</div>
+        <div class="sys-card-desc">A library e-resource management system built with Laravel and MySQL.</div>
+        <div class="sys-tags">
+          <span class="sys-tag">PHP</span>
+          <span class="sys-tag">Laravel</span>
+          <span class="sys-tag">MySQL</span>
+        </div>
+      </a>
+      <a href="projects/skinetique.html" class="sys-card reveal" data-category="web">
+        <div class="sys-card-num">02</div>
+        <div class="sys-card-title">SKINETIQUE</div>
+        <div class="sys-card-desc">A records management system for a skincare business in Davao City built with Laravel and MySQL.</div>
+        <div class="sys-tags">
+          <span class="sys-tag">PHP</span>
+          <span class="sys-tag">Laravel</span>
+          <span class="sys-tag">MySQL</span>
+        </div>
+      </a>
+    </div>
+  </section>
+
+  <!-- ======================== GRAPHIC DESIGN ======================== -->
+  <section id="graphics" style="background: var(--surface);">
+    <div class="section-header reveal">
+      <div>
+        <div class="section-label">02 — Design</div>
+        <h2 class="section-title">Graphic Design<br/>&amp; Visual Work</h2>
+      </div>
+    </div>
+    <div class="section-divider"></div>
+
+    <!-- ── POSTERS & GRAPHICS ── -->
+    <div class="design-subsection reveal">
+      <div class="design-sub-label">
+        <span class="design-sub-label-text">Posters &amp; Graphics</span>
+        <div class="design-sub-label-line"></div>
+      </div>
+
+      <div class="poster-grid">
+
+        <div class="poster-item">
+          <div class="poster-frame">
+            <img src="assets/img/poster-1.png" alt="Film Poster for Eternal Midnight" />
+          </div>
+          <div class="poster-caption">Film Poster for Eternal Midnight</div>
+        </div>
+
+        <div class="poster-item">
+          <div class="poster-frame">
+            <img src="assets/img/poster-2.png" alt="Film Poster for Orange Haze" />
+          </div>
+          <div class="poster-caption">Film Poster for Orange Haze</div>
+        </div>
+
+        <div class="poster-item">
+          <div class="poster-frame">
+            <img src="assets/img/digital-1.png" alt="Digital Graphic" />
+          </div>
+          <div class="poster-caption">Digital Graphic Enhanced with Picsart</div>
+        </div>
+
+        <div class="poster-item">
+          <div class="poster-frame">
+            <img src="assets/img/poster-3.png" alt="Promotional Poster" />
+          </div>
+          <div class="poster-caption">Promotional Poster</div>
+        </div>
+
+        <div class="poster-item">
+          <div class="poster-frame">
+            <img src="assets/img/business-1.png" alt="Business Poster for Desi Maza" />
+          </div>
+          <div class="poster-caption">Business Poster for Desi Maza</div>
+        </div>
+
+        <div class="poster-item">
+          <div class="poster-frame">
+            <img src="assets/img/digital-2.png" alt="Lookbook Cover" />
+          </div>
+          <div class="poster-caption">Lookbook Cover</div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="design-divider"></div>
+
+    <!-- ── THUMBNAILS ── -->
+    <div class="design-subsection reveal">
+      <div class="design-sub-label">
+        <span class="design-sub-label-text">Thumbnails</span>
+        <div class="design-sub-label-line"></div>
+      </div>
+
+      <div class="slideshow-wrap" id="thumbSlideshow">
+        <div class="slides">
+
+          <div class="slide">
+            <div class="slide-bg" style="background-image:url('assets/img/thumbnail-1.jpg');background-size:cover;background-position:center;"></div>
+            <div class="slide-overlay"></div>
+            <div class="slide-info">
+              <span class="slide-tag">Thumbnail</span>
+              <div class="slide-title">Eternal Midnight</div>
+              <div class="slide-desc">A thumbnail for my short film, Eternal Midnight.</div>
+            </div>
+          </div>
+
+          <div class="slide">
+            <div class="slide-bg" style="background-image:url('assets/img/thumbnail-2.jpg');background-size:cover;background-position:center;"></div>
+            <div class="slide-overlay"></div>
+            <div class="slide-info">
+              <span class="slide-tag">Thumbnail</span>
+              <div class="slide-title">Phobia III</div>
+              <div class="slide-desc">A thumbnail for an animation trailer.</div>
+            </div>
+          </div>
+
+        </div>
+        <div class="slide-arrows">
+          <button class="slide-arr slide-arr-prev" aria-label="Previous"><i class="ph ph-arrow-up"></i></button>
+          <button class="slide-arr slide-arr-next" aria-label="Next"><i class="ph ph-arrow-down"></i></button>
+        </div>
+        <div class="slide-dots">
+          <button class="slide-dot active" aria-label="Slide 1"></button>
+          <button class="slide-dot" aria-label="Slide 2"></button>
+        </div>
+      </div>
+    </div>
+
+    <div class="design-divider"></div>
+
+    <!-- ── UI/UX ── -->
+    <div class="design-subsection reveal">
+      <div class="design-sub-label">
+        <span class="design-sub-label-text">UI / UX</span>
+        <div class="design-sub-label-line"></div>
+      </div>
+
+      <div class="slideshow-wrap" id="uiuxSlideshow">
+        <div class="slides">
+
+          <div class="slide">
+            <div class="slide-bg slide-color-6"></div>
+              <div class="slide-bg" style="background-image:url('assets/img/uiux-1.png');background-size:cover;background-position:center top;"></div>
+            <div class="slide-overlay"></div>
+            <div class="slide-info">
+              <span class="slide-tag">FIGMA PROTOTYPE</span>
+              <div class="slide-title">AXIOM</div>
+              <div class="slide-desc">A high fidelity prototype featuring the dashboard.</div>
+            </div>
+          </div>
+
+          <div class="slide">
+            <div class="slide-bg slide-color-2"></div>
+            <div class="slide-bg" style="background-image:url('assets/img/uiux-2.png');background-size:cover;background-position:center top;"></div>
+            <div class="slide-overlay"></div>
+            <div class="slide-info">
+              <span class="slide-tag">FIGMA PROTOTYPE</span>
+              <div class="slide-title">SKINETIQUE</div>
+              <div class="slide-desc">A high fidelity prototype featuring the Order Form modal.</div>
+            </div>
+          </div>
+
+          <div class="slide">
+            <div class="slide-bg slide-color-2"></div>
+            <div class="slide-bg" style="background-image:url('assets/img/uiux-3.png');background-size:cover;background-position:center top;"></div>
+            <div class="slide-overlay"></div>
+            <div class="slide-info">
+              <span class="slide-tag">CANVA WIREFRAME</span>
+              <div class="slide-title">MOBILE E-WALLET APP</div>
+              <div class="slide-desc">A low-fidelity wireframe designed via Canva.</div>
+            </div>
+          </div>
+
+        </div>
+        <div class="slide-arrows">
+          <button class="slide-arr slide-arr-prev" aria-label="Previous"><i class="ph ph-arrow-up"></i></button>
+          <button class="slide-arr slide-arr-next" aria-label="Next"><i class="ph ph-arrow-down"></i></button>
+        </div>
+        <div class="slide-dots">
+          <button class="slide-dot active" aria-label="Slide 1"></button>
+          <button class="slide-dot" aria-label="Slide 2"></button>
+          <button class="slide-dot" aria-label="Slide 3"></button>
+        </div>
+      </div>
+    </div>
+
+    <div class="design-divider"></div>
+
+    <!-- ── SOCIAL MEDIA ── -->
+    <div class="design-subsection reveal">
+      <div class="design-sub-label">
+        <span class="design-sub-label-text">Social Media</span>
+        <div class="design-sub-label-line"></div>
+      </div>
+
+      <div class="social-grid">
+
+        <div class="social-item">
+          <div class="social-frame">
+            <img src="assets/img/social-1.png" alt="Post 1" />
+          </div>
+          <div class="social-caption">Post 1</div>
+        </div>
+
+        <div class="social-item">
+          <div class="social-frame">
+            <img src="assets/img/social-2.jpg" alt="Post 2" />
+          </div>
+          <div class="social-caption">Post 2</div>
+        </div>
+
+        <div class="social-item">
+          <div class="social-frame">
+            <img src="assets/img/social-3.jpg" alt="Post 3" />
+          </div>
+          <div class="social-caption">Post 3</div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Tools -->
+    <div class="design-divider"></div>
+    <div class="reveal">
+      <p style="font-size:0.8rem;color:var(--text-muted);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:1rem;">Tools &amp; Software</p>
+      <div style="display:flex;flex-wrap:wrap;gap:0.75rem;">
+        <span class="sys-tag">Figma</span>
+        <span class="sys-tag">Canva</span>
+        <span class="sys-tag">Picsart</span>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- ======================== MOTION & 3D ======================== -->
+<section id="motion">
+  <div class="section-header reveal">
+    <div>
+      <div class="section-label">03 — Motion &amp; 3D</div>
+      <h2 class="section-title">Animation &amp;<br/>3D Work</h2>
+    </div>
+  </div>
+  <div class="section-divider"></div>
+
+  <div style="display: flex; flex-direction: column; gap: 2.5rem;">
+
+    <!-- Animation 1 -->
+    <div class="reveal" style="
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      align-items: start;
+    ">
+      <div style="
+        position: relative;
+        width: 100%;
+        aspect-ratio: 16/9;
+        border-radius: 8px;
+        overflow: hidden;
+        border: 1px solid var(--border);
+        background: #000;
+      ">
+        <iframe
+          src="https://www.youtube.com/embed/AMrLfUhVPaA"
+          title="Animation 1"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen
+          style="position: absolute; inset: 0; width: 100%; height: 100%; border: none;"
+        ></iframe>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 0.75rem;">
+        <div class="section-label" style="margin: 0;">Eternal Midnight</div>
+        <p style="
+          font-size: 0.95rem;
+          line-height: 1.85;
+          color: var(--text-muted);
+          text-align: justify;
+          margin: 0;
+        ">
+          This 17-minute film is a psychological-horror drama that utilizes Mine-imator, a 3D animation software inspired by the voxel-style visuals of Minecraft. 
+        </p>
+      </div>
+    </div>
+
+    <div style="width: 100%; height: 1px; background: var(--border);"></div>
+
+    <!-- Animation 2 -->
+    <div class="reveal" style="
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      align-items: start;
+    ">
+      <div style="
+        position: relative;
+        width: 100%;
+        aspect-ratio: 16/9;
+        border-radius: 8px;
+        overflow: hidden;
+        border: 1px solid var(--border);
+        background: #000;
+      ">
+        <iframe
+          src="https://www.youtube.com/embed/eWMvzdC4IVk"
+          title="Animation 2"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen
+          style="position: absolute; inset: 0; width: 100%; height: 100%; border: none;"
+        ></iframe>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 0.75rem;">
+        <div class="section-label" style="margin: 0;">Milk</div>
+        <p style="
+          font-size: 0.95rem;
+          line-height: 1.85;
+          color: var(--text-muted);
+          text-align: justify;
+          margin: 0;
+        ">
+          Nominated for Best Animation and Best Original Concept by the Minecraft Machinima Awards 2025 and an Honorable Mention from Films That Move 2025, MILK was produced with Mine-imator and CapCut.
+        </p>
+      </div>
+    </div>
+
+    <div style="width: 100%; height: 1px; background: var(--border);"></div>
+
+    <!-- Animation 3 -->
+    <div class="reveal" style="
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      align-items: start;
+    ">
+      <div style="
+        position: relative;
+        width: 100%;
+        aspect-ratio: 16/9;
+        border-radius: 8px;
+        overflow: hidden;
+        border: 1px solid var(--border);
+        background: #000;
+      ">
+        <iframe
+          src="https://www.youtube.com/embed/X11AmZap5ec"
+          title="Animation 3"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen
+          style="position: absolute; inset: 0; width: 100%; height: 100%; border: none;"
+        ></iframe>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 0.75rem;">
+        <div class="section-label" style="margin: 0;">Yoshanai</div>
+        <p style="
+          font-size: 0.95rem;
+          line-height: 1.85;
+          color: var(--text-muted);
+          text-align: justify;
+          margin: 0;
+        ">
+          Like the preceding features, Yoshanai was produced with Mine-imator and CapCut.
+        </p>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="reveal" style="margin-top: 2.5rem;">
+    <p style="font-size:0.8rem;color:var(--text-muted);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:1rem;">Tools &amp; Software</p>
+    <div style="display:flex;flex-wrap:wrap;gap:0.75rem;">
+      <span class="sys-tag">CapCut</span>
+      <span class="sys-tag">Mine-imator</span>
+    </div>
+  </div>
+</section>
+
+  <!-- ======================== ABOUT ======================== -->
+  <section id="about">
+    <div class="section-header reveal">
+      <div>
+        <div class="section-label">04 — About</div>
+        <h2 class="section-title">The Person<br/>Behind the Work</h2>
+      </div>
+    </div>
+    <div class="section-divider"></div>
+
+    <div class="about-grid">
+      <div class="about-img-wrap reveal-left">
+        <div class="about-img-frame">
+          <img src="assets/img/yanna2.png" alt="Julliann">
+        </div>
+        <div class="about-img-badge">
+          <span class="big">1+</span>
+          <span class="small">Years<br/>Experience</span>
+        </div>
+      </div>
+
+      <div class="about-body reveal-right">
+        <p>
+          Hi! I'm <strong>Julliann Miguelie Dequina Casenas</strong>, a multidisciplinary creator based in Davao City. I work at the intersection of software systems, visual design, and motion — building things that are both functional and beautiful.
+        </p>
+        <p>
+          With a background in Bachelor of Science in Information Technology, I've had the chance to develop essential system solutions to cater to client-specific needs.
+        </p>
+        <p>
+          When I'm not coding or designing, you'll find me experimenting with 3D scenes, learning new tools, or exploring creative side projects that push my skills further.
+        </p>
+        <div class="skills-grid">
+          <div class="skill-item">Systems Development</div>
+          <div class="skill-item">UI / UX Design</div>
+          <div class="skill-item">Graphic Design</div>
+          <div class="skill-item">Digital Marketing</div>
+          <div class="skill-item">Creative Writing</div>
+          <div class="skill-item">Video Editing</div>
+          <div class="skill-item">Front-End Development</div>
+        </div>
+        <div style="margin-top: 2.5rem; display: flex; gap: 1rem; flex-wrap: wrap;">
+          <a href="#contact" class="btn-primary">Work With Me <i class="ph ph-arrow-right"></i></a>
+          <a href="assets/your-cv.pdf" class="btn-primary" style="background:transparent;color:var(--text);border:1.5px solid var(--border);" download>
+            Download CV <i class="ph ph-download-simple"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================== CONTACT ======================== -->
+<section id="contact">
+  <div class="section-header reveal">
+    <div>
+      <div class="section-label">05 — Contact</div>
+      <h2 class="section-title">Let's Build<br/>Something Together</h2>
+    </div>
+  </div>
+  <div class="section-divider"></div>
+
+  <div class="reveal-left">
+    <div class="contact-info" style="margin-bottom: 2rem;">
+      <h3>Get In Touch</h3>
+      <p>Whether you have a project in mind, want to collaborate, or just want to say hello — my inbox is always open. I'll get back to you as soon as possible.</p>
+    </div>
+
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+
+      <a href="mailto:julliannchannel2@gmail.com" class="contact-link">
+        <span class="contact-link-icon"><i class="ph ph-envelope"></i></span>
+        <div class="contact-link-text">
+          julliannchannel2@gmail.com
+          <span>Send me an email</span>
+        </div>
+      </a>
+
+      <a href="https://www.linkedin.com/in/julliann-miguelie-case%C3%B1as-328248307/" class="contact-link" target="_blank" rel="noopener">
+        <span class="contact-link-icon"><i class="ph ph-linkedin-logo"></i></span>
+        <div class="contact-link-text">
+          linkedin.com/in/julliann-miguelie-caseñas
+          <span>Connect on LinkedIn</span>
+        </div>
+      </a>
+
+      <a href="https://github.com/jcasenas" class="contact-link" target="_blank" rel="noopener">
+        <span class="contact-link-icon"><i class="ph ph-github-logo"></i></span>
+        <div class="contact-link-text">
+          github.com/jcasenas
+          <span>See my code</span>
+        </div>
+      </a>
+
+      <a href="https://www.instagram.com/jllnnah" class="contact-link" target="_blank" rel="noopener">
+        <span class="contact-link-icon"><i class="ph ph-instagram-logo"></i></span>
+        <div class="contact-link-text">
+          @jllnnah
+          <span>Follow on Instagram</span>
+        </div>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+  <!-- ======================== FOOTER ======================== -->
+  <footer>
+    <div class="footer-copy">&copy; <span id="year"></span> Julliann Dequina.</div>
+    <div class="footer-socials">
+      <a href="https://www.instagram.com/jllnnah" class="footer-social" aria-label="Instagram"><i class="ph ph-instagram-logo"></i></a>
+      <a href="https://www.linkedin.com/in/julliann-miguelie-case%C3%B1as-328248307/" class="footer-social" aria-label="LinkedIn"><i class="ph ph-linkedin-logo"></i></a>
+      <a href="https://github.com/jcasenas" class="footer-social" aria-label="GitHub"><i class="ph ph-github-logo"></i></a>
+    </div>
+  </footer>
+
+  <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+  <script src="assets/js/main.js"></script>
+</body>
+</html>
