@@ -697,3 +697,108 @@ footer {
 .slide-color-4 { background: linear-gradient(135deg, #001219 0%, #005F73 50%, #0A9396 100%); }
 .slide-color-5 { background: linear-gradient(135deg, #10002B 0%, #240046 50%, #3C096C 100%); }
 .slide-color-6 { background: linear-gradient(135deg, #1B1B2F 0%, #162447 50%, #1F4068 100%); }
+
+/* ── CURSOR: hide on touch devices ── */
+@media (hover: none) {
+  #cursor, #cursor-ring { display: none; }
+  body { cursor: auto; }
+  button { cursor: pointer; }
+}
+
+@media (max-width: 900px) {
+
+  /* ── NAV ── */
+  nav { padding: 0 1.25rem; }
+
+  /* ── HERO ── */
+  #home { padding-top: calc(var(--nav-h) + 1rem); min-height: unset; padding-bottom: 4rem; }
+  .hero-inner { padding: 0; }
+
+  /* ── SLIDESHOW: use aspect-ratio so it's not too tall ── */
+  .slideshow-wrap { aspect-ratio: 4/3; }
+  .slide-info { padding: 1.25rem; }
+  .slide-title { font-size: 1.2rem; }
+  .slide-desc { font-size: 0.82rem; }
+
+  /* ── MOTION: stack video + description ── */
+  #motion [style*="grid-template-columns: 1fr 1fr"] {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 1.25rem !important;
+  }
+
+  /* ── CONTACT: links text overflow fix ── */
+  .contact-link-text {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    max-width: min(55vw, 260px);
+  }
+
+  /* ── CONTACT: inline grid override ── */
+  #contact [style*="grid-template-columns: 1fr 1fr"] {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 0.75rem !important;
+  }
+
+  /* ── ABOUT: badge repositioned since img centers ── */
+  .about-img-badge { right: -0.75rem; bottom: -0.75rem; }
+
+  /* ── FOOTER ── */
+  footer { flex-direction: column; align-items: center; text-align: center; }
+}
+
+@media (max-width: 680px) {
+
+  /* ── NAV ── */
+  nav { height: 60px; }
+  :root { --nav-h: 60px; }
+
+  /* ── HERO ── */
+  .hero-img-frame { max-width: 200px; }
+  .hero-img-frame::after { bottom: -10px; right: -10px; }
+  .hero-desc-dash { display: none; }
+  .hero-desc p { font-size: 0.92rem; }
+  .hero-actions { flex-wrap: wrap; gap: 0.75rem; }
+
+  /* ── SECTION SPACING ── */
+  section { padding: 3.5rem 1.25rem; }
+  .section-divider { margin-bottom: 2rem; }
+  .section-header { margin-bottom: 2rem; }
+
+  /* ── POSTER GRID ── */
+  .poster-grid { grid-template-columns: repeat(2, 1fr); gap: 0.85rem; }
+
+  /* ── SOCIAL GRID ── */
+  .social-grid { grid-template-columns: 1fr; }
+
+  /* ── SLIDESHOW ── */
+  .slideshow-wrap { aspect-ratio: 1/1; }
+  .slide-arrows { right: 0.75rem; }
+  .slide-arr { width: 32px; height: 32px; font-size: 0.85rem; }
+
+  /* ── SYSTEMS CARDS ── */
+  .sys-card { padding: 1.25rem; }
+  .sys-card-num { font-size: 2rem; }
+
+  /* ── ABOUT ── */
+  .about-img-wrap { max-width: 240px; }
+  .about-img-badge { width: 88px; height: 88px; }
+  .about-img-badge .big { font-size: 1.4rem; }
+  .about-body p { font-size: 0.92rem; }
+
+  /* ── MOBILE MENU LINKS ── */
+  .mobile-menu a { font-size: 2rem; }
+
+  /* ── CONTACT ── */
+  .contact-link { padding: 0.85rem 1rem; }
+  .contact-link-text { max-width: calc(100vw - 8rem); }
+}
+
+@media (max-width: 400px) {
+  .poster-grid { grid-template-columns: 1fr; }
+  .slideshow-wrap { aspect-ratio: 3/4; }
+  .btn-primary { padding: 0.65rem 1.2rem; font-size: 0.85rem; }
+  .about-img-wrap { max-width: 200px; }
+}
